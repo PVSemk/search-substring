@@ -52,10 +52,10 @@ std::vector<int> searchKarpRabin(std::string txt, std::string pat, int q) // q -
         if ( i < N - M ) {
             thash = (d * (thash - txt[i] * h) + txt[i + M]) % q;
 
-            // We might get negative value of thash, converting it
-            // to positive
+            // Sometimes we get negative value
+            // Convert it to positive
             if (thash < 0)
-                thash = (thash + q);
+               thash = (thash + q);
 
         }
     }

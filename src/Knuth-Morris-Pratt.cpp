@@ -12,7 +12,7 @@ std::vector<int> computePrefixFunction(std::string pat)
     int k(-1);
     for (int i(1); i < M; i++)
     {
-        while (k != -1 && pat[k+1] != pat[i])
+        while (k > -1 && pat[k+1] != pat[i])
             k = res[k];
         if (pat[k+1] == pat[i])
             res[i] = ++k;
@@ -28,7 +28,7 @@ std::vector<int> searchKMP(std::string txt, std::string pat)
     int tail(-1);
     for (int i(0); i < N; i++) // Scan text from left to right
     {
-        while (tail != -1 && pat[tail + 1] != txt[i])
+        while (tail > -1 && pat[tail + 1] != txt[i])
             tail = pref[tail]; // Next symbol doesn't match
         if (pat[tail + 1] == txt[i])
             tail++; // Next symbol matches

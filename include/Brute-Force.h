@@ -8,6 +8,6 @@
 #include <vector>
 #include <string>
 
-std::vector<int> bruteForceSearch(std::string s, std::string t);
+std::vector<int> bruteForceSearch(std::string txt, std::string pat);
 
 #endif //TASK1_BRUTE_FORCE_H

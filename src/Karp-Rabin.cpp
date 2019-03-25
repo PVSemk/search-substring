@@ -11,31 +11,32 @@ std::vector<int> searchKarpRabin(std::string txt, std::string pat, int q) // q -
 {
     std::vector<int> result;
     int h(1);
+    unsigned long N(txt.length()), M(pat.length());
 
     // Count h variable in order to recount hash later
     // (It will help to remove the leading symbol)
-    // Formula: h = pow(d, pat.length() - 1) % q
-    for (int i(0); i < pat.length() - 1; i++)
+    // Formula: h = pow(d, M - 1) % q
+    for (int i(0); i < M - 1; i++)
         h = d * h % q;
 
-    int thash(0), shash(0); // hash value for the template and string
+    int phash(0), thash(0); // hash value for the pattern and text
 
-    // Calculate value for the template and the first windows of the string
-    for (int i(0); i < pat.length(); i++)
+    // Calculate value for the pattern and the first window of the string
+    for (int i(0); i < M; i++)
     {
-        thash = (d * thash + pat[i]) % q;
-        shash = (d * shash + txt[i]) % q;
+        phash = (d * phash + pat[i]) % q;
+        thash = (d * thash + txt[i]) % q;
     }
 
     // Check all possible shifts
-    for (int i(0), j; i <= txt.length() - pat.length(); i++)
+    for (int i(0), j; i <= N - M; i++)
     {
-        // Check hash values of the current window and the template
+        // Check hash values of the current window and the pattern
         // If they are equal, compare all symbols in order to exclude collision-cases
-        if (shash == thash)
+        if (thash == phash)
         {
-            // Check equality of txt[i...i + pat.length - 1] and template
-            for (j = 0; j < pat.length(); j++)
+            // Check equality of txt[i...i + pat.length - 1] and pattern
+            for (j = 0; j < M; j++)
                 if (txt[j + i] != pat[j])
                     break;
 
@@ -45,7 +46,22 @@ std::vector<int> searchKarpRabin(std::string txt, std::string pat, int q) // q -
                 result.push_back(i);
             }
         }
+        // Calculate hash value for next window of text:
+        // Remove the leading symbol
+        // Left shift
+        // Add the trailing symbol
+        if ( i < N - M ) {
+            thash = (d * (thash - txt[i] * h) + txt[i + M]) % q;
+
+            // We might get negative value of thash, converting it
+            // to positive
+            if (thash < 0)
+                thash = (thash + q);
+
+        }
     }
+
+    return result;
 
 
 }

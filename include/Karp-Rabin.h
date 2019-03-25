@@ -8,6 +8,6 @@
 #include <vector>
 #include <string>
 
-std::vector<int> searchKarpRabin(std::string s, std::string t);
+std::vector<int> searchKarpRabin(std::string txt, std::string pat, int q);
 
 #endif //TASK1_KARP_RABIN_H

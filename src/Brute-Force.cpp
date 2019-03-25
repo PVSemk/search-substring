@@ -6,12 +6,13 @@
 std::vector<int> bruteForceSearch(std::string txt, std::string pat)
 {
     std::vector<int> result;
+    unsigned long N(txt.length()), M(pat.length());
     // Check all possible shifts
-    for (int i(0); i <= txt.length() - pat.length(); i++)
+    for (int i(0); i <= N - M; i++)
     {
         int j(i);
         // Check equality of txt[i...i + pat.length - 1] and template
-        for (int k(0); j < i + pat.length(); j++, k++)
+        for (int k(0); j < i + M; j++, k++)
             if (txt[j] != pat[k])
                 break;
 

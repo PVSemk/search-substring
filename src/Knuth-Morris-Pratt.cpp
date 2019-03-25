@@ -1,4 +1,4 @@
 //
 // Created by pavel on 25.03.19.
 //
-#include "Knuth-Morris-Pratt.cpp"
+#include "Knuth-Morris-Pratt.h"

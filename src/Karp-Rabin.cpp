@@ -13,8 +13,7 @@ std::vector<int> searchKarpRabin(std::string txt, std::string pat, int q) // q -
     int h(1);
     unsigned long N(txt.length()), M(pat.length());
 
-    // Count h variable in order to recount hash later
-    // (It will help to remove the leading symbol)
+    // h will help to remove the leading symbol later
     // Formula: h = pow(d, M - 1) % q
     for (int i(0); i < M - 1; i++)
         h = d * h % q;

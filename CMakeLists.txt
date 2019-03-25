@@ -18,14 +18,27 @@ include_directories(${COMMON_INCLUDES})
 file(GLOB TEST_SRC_FILES ${PROJECT_SOURCE_DIR}/test/*.cpp)
 
 
-set(SRC_FILES ${PROJECT_SOURCE_DIR}/src/Rabin-Karp.cpp)
+set(SRC_FILES1 ${PROJECT_SOURCE_DIR}/src/Brute-Force.cpp)
+set(SRC_FILES2 ${PROJECT_SOURCE_DIR}/src/Karp-Rabin.cpp)
+set(SRC_FILES3 ${PROJECT_SOURCE_DIR}/src/Aho-Corasick.cpp)
+set(SRC_FILES4 ${PROJECT_SOURCE_DIR}/src/Knuth-Morris-Pratt.cpp)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_library(task1_lib ${SRC_FILES})
-add_executable(task1 ${PROJECT_SOURCE_DIR}/src/main.cpp)
+add_library(task1_lib ${SRC_FILES1})
+add_library(task2_lib ${SRC_FILES2})
+add_library(task3_lib ${SRC_FILES3})
+add_library(task4_lib ${SRC_FILES4})
+
+add_executable(task1 ${PROJECT_SOURCE_DIR}/src/main1.cpp)
+add_executable(task2 ${PROJECT_SOURCE_DIR}/src/main2.cpp)
+add_executable(task3 ${PROJECT_SOURCE_DIR}/src/main3.cpp)
+add_executable(task4 ${PROJECT_SOURCE_DIR}/src/main4.cpp)
 
 target_link_libraries(task1 task1_lib)
+target_link_libraries(task2 task2_lib)
+target_link_libraries(task3 task3_lib)
+target_link_libraries(task4 task4_lib)
 
 ################################
 # Testing
@@ -53,7 +66,7 @@ if (BUILD_TESTS)
   target_link_libraries(runUnitTests gtest gtest_main)
 
   # Extra linking for the project.
-  target_link_libraries(runUnitTests task1_lib)
+  target_link_libraries(runUnitTests task1_lib task2_lib task3_lib task4_lib)
 
   # This is so you can do 'make test' to see all your tests run, instead of
   # manually running the executable runUnitTests to see those specific tests.

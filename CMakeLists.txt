@@ -19,7 +19,7 @@ file(GLOB TEST_SRC_FILES ${PROJECT_SOURCE_DIR}/test/*.cpp)
 
 set(SRC_FILES1 ${PROJECT_SOURCE_DIR}/src/Brute-Force.cpp)
 set(SRC_FILES2 ${PROJECT_SOURCE_DIR}/src/Karp-Rabin.cpp)
-set(SRC_FILES3 ${PROJECT_SOURCE_DIR}/src/Aho-Corasick.cpp)
+set(SRC_FILES3 ${PROJECT_SOURCE_DIR}/src/Finite-Automata.cpp)
 set(SRC_FILES4 ${PROJECT_SOURCE_DIR}/src/Knuth-Morris-Pratt.cpp)
 
 set(CMAKE_CXX_STANDARD 11)

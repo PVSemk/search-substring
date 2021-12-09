@@ -1,9 +1,0 @@
-#ifndef SUBSTRING_LIBRARY_H
-#define SUBSTRING_LIBRARY_H
-
-#include "algos/Brute-Force.hpp"
-#include "algos/Finite-Automata.hpp"
-#include "algos/Karp-Rabin.hpp"
-#include "algos/Knuth-Morris_Pratt.hpp"
-
-#endif

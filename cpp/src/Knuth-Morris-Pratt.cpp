@@ -1,10 +1,5 @@
-//
-// Created by pavel on 25.03.19.
-//
 #include "Knuth-Morris-Pratt.hpp"
 
-// The prefix function for a pattern encapsulates knowledge about how the
-// pattern matches against shifts of itself
 std::vector<int> computePrefixFunction(std::string pat)
 {
     unsigned long M(pat.length());
@@ -20,22 +15,26 @@ std::vector<int> computePrefixFunction(std::string pat)
     return res;
 }
 
-std::vector<int> searchKMP(std::string txt, std::string pat)
-{
+std::vector<int> searchKMP(std::string txt, std::string pat) {
     unsigned long N(txt.length()), M(pat.length());
-    std::vector<int> pref = computePrefixFunction(pat);
     std::vector<int> result;
+    if (!N || !M)
+    {
+        return result;
+    }
+    std::vector<int> pref = computePrefixFunction(pat);
+
     int tail(-1);
-    for (int i(0); i < N; i++) // Scan text from left to right
+    for (int i(0); i < N; i++)
     {
         while (tail > -1 && pat[tail + 1] != txt[i])
-            tail = pref[tail]; // Next symbol doesn't match
+            tail = pref[tail];
         if (pat[tail + 1] == txt[i])
-            tail++; // Next symbol matches
-        if (tail == M - 1) // Check if all symbols match
+            tail++;
+        if (tail == M - 1)
         {
             result.push_back(i - tail);
-            tail = pref[tail]; // Search for the next matching
+            tail = pref[tail];
         }
     }
     return result;
